@@ -5,7 +5,7 @@ using UnityEngine;
 public class BearAnimController : MonoBehaviour
 {
     Animator animator;
-    void Start()
+    void Awake()
     {
        animator=GetComponent<Animator>();
     }
@@ -21,11 +21,13 @@ public class BearAnimController : MonoBehaviour
     }
     public void Buff()
     {
+        animator.ResetTrigger("Run");
         animator.SetTrigger("Buff");
     }
     public void Death()
     {
-        animator.SetBool("Death",true);
+        animator.ResetTrigger("Run");
+        animator.SetTrigger("Death");
     }
     public void getHit()
     {

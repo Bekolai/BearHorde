@@ -4,42 +4,35 @@ using UnityEngine;
 
 public class MinionController : MonoBehaviour
 {   [SerializeField] GameObject minionsObj;
+    [SerializeField] GameObject player;
     public GameObject minionPrefab;
 
     public List<GameObject> Minions;
-    
-    // Start is called before the first frame update
+
+    public static MinionController Instance { get; private set; }
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            Instance = this;
+        }
+ 
+    }
     void Start()
     {
-        Minions.Add(gameObject);
+        Minions.Add(player);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("ChangeSize"))
-        {
-            IncDecSize incDecSize = other.gameObject.GetComponent<IncDecSize>();
-            switch(incDecSize.getChangeType())
-            {
-                case "Increase": IncreaseMinion(incDecSize.getChangeNumber()); break;
-                case "Decrease": DecreaseMinion(incDecSize.getChangeNumber()); break;
-                case "Multiple": MultipleMinion(incDecSize.getChangeNumber()); break;
-                case "Divison":  DivisonMinion(incDecSize.getChangeNumber());  break;
 
-            }
-        }
-
-    }
-    void IncreaseMinion(int increaseSize)
+    public void IncreaseMinion(int increaseSize)
     {
         for(int i = 0; i < increaseSize; i++)
         {
-            if(Minions.Count>=50)
+            if(Minions.Count>=19)
             {
                 break;
             }
@@ -49,17 +42,35 @@ public class MinionController : MonoBehaviour
             setPosition();
         }
     }
-    void DecreaseMinion(int decreaseSize)
+    public void DecreaseMinion(int decreaseSize)
     {
+       for(int i=0;i<decreaseSize;i++)
+        {
+            if (Minions.Count > 1)
+            {
+                GameObject minion = Minions[Minions.Count-1];
+                Minions.RemoveAt(Minions.Count-1);
+                minion.GetComponent<Minion>().MinionDie();
+                setPosition(); //set pos after removing minion
+
+            }
+            else
+                Debug.Log("GameOver");
+        }
 
     }
-    void MultipleMinion(int increaseSize)
+    public void MultipleMinion(int increaseSize)
     {
-
+        
+        int totalIncrease=Minions.Count*increaseSize;
+        totalIncrease -= Minions.Count;
+        IncreaseMinion(totalIncrease);
     }
-    void DivisonMinion(int decreaseSize)
+    public void DivisonMinion(int decreaseSize)
     {
-
+        int totalDecrease = Minions.Count / decreaseSize;
+        totalDecrease =  Minions.Count-totalDecrease;
+        DecreaseMinion(totalDecrease);
     }
     void setPosition()
     {
@@ -74,17 +85,28 @@ public class MinionController : MonoBehaviour
                 switch(verticalPos)
                 {
                     case 1:offset.x = 0f;break;
-                    case 2: offset.x = 1f; break;
-                    case 0: offset.x = -1f; break;
+                    case 2: offset.x = 1.2f; offset.z = 0.25f; break;
+                    case 0: offset.x = -1.2f; offset.z = 0.25f; break;
                 }
-                Debug.Log(row);
-                offset.z =-1f+(row*-2f);
-                Debug.Log(offset);
+                offset.z +=-0.75f+(row*-1.75f);
                 Minions[i].transform.localPosition = offset;
 
             }
         
         }
     
+    }
+    public void removeMinion(GameObject diedMinion)
+    {
+        if (Minions.Count > 1)
+        {
+
+            Minions.Remove(diedMinion);
+            diedMinion.GetComponent<Minion>().MinionDie();
+            setPosition();//set pos after removing minion
+        }
+        else
+            Debug.Log("GameOver");
+       
     }
 }

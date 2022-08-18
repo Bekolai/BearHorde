@@ -12,15 +12,11 @@ public enum set_changeType
 public class IncDecSize : MonoBehaviour
 {
     [SerializeField] set_changeType changeType;
-     int number;
+    [SerializeField] int number;
     // Start is called before the first frame update
     void Awake()
     {
-        if (changeType == set_changeType.Increase)
-        {
-            number = Random.Range(1, 5);
-        }
-        if (changeType == set_changeType.Decrease)
+        if (changeType == set_changeType.Increase || changeType == set_changeType.Decrease)
         {
             number = Random.Range(1, 5);
         }
