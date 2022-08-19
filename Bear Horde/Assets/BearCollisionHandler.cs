@@ -6,7 +6,6 @@ public class BearCollisionHandler : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name);
        if (other.CompareTag("ChangeSize"))
         {
                 IncDecSize incDecSize = other.gameObject.GetComponent<IncDecSize>();
@@ -18,8 +17,14 @@ public class BearCollisionHandler : MonoBehaviour
                     case "Divison":  MinionController.Instance.DivisonMinion(incDecSize.getChangeNumber()); break;
 
                 }
+            Destroy(other.gameObject);
        }
+        if (other.CompareTag("ColorChanger"))
+        {
+            ColorChanger colorChanger = other.gameObject.GetComponent<ColorChanger>();
+            MinionController.Instance.changeColor(colorChanger.set_BearColor);
+        }
 
-     }
+    }
     
 }

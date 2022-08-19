@@ -3,12 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MinionController : MonoBehaviour
-{   [SerializeField] GameObject minionsObj;
+{
+    public enum set_changeType
+    {
+        Increase,
+        Decrease,
+        Multiple,
+        Divison
+    }
+    public enum set_bearColor
+    {
+        Black,
+        Red,
+        Yellow
+    }
+
+
+
+    [SerializeField] GameObject minionPrefab;
+    [SerializeField] GameObject minionsObj;
     [SerializeField] GameObject player;
-    public GameObject minionPrefab;
 
+    [SerializeField] Material[] materials;
     public List<GameObject> Minions;
-
+    set_bearColor set_BearColor;
     public static MinionController Instance { get; private set; }
     private void Awake()
     {
@@ -109,4 +127,40 @@ public class MinionController : MonoBehaviour
             Debug.Log("GameOver");
        
     }
+    public void changeColor(set_bearColor color)
+    {
+       if(color==set_BearColor)
+        {
+            return;
+        }
+       switch(color)
+        {
+            case set_bearColor.Black:
+                set_BearColor = set_bearColor.Black;
+                foreach (GameObject minion in Minions)
+                {
+                    minion.GetComponent<SkinnedMeshRenderer>().material = materials[0];
+                }
+                break;
+            case set_bearColor.Red:
+                set_BearColor = set_bearColor.Red;
+                foreach (GameObject minion in Minions)
+                {
+                    minion.GetComponent<SkinnedMeshRenderer>().material = materials[1];
+                }
+                break;
+            case set_bearColor.Yellow:
+                set_BearColor = set_bearColor.Yellow;
+                foreach (GameObject minion in Minions)
+                {
+                    minion.GetComponent<SkinnedMeshRenderer>().material = materials[2];
+                }
+                break;
+        }
+
+
+   
+
+    }
+
 }
