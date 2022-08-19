@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class MinionController : MonoBehaviour
 {
@@ -23,8 +25,12 @@ public class MinionController : MonoBehaviour
     [SerializeField] GameObject minionPrefab;
     [SerializeField] GameObject minionsObj;
     [SerializeField] GameObject player;
-
+    [SerializeField] TMP_Text countText;
+    [SerializeField] Image    countImage;
     [SerializeField] Material[] materials;
+    [SerializeField] Color[] UIcolors;
+
+
     public List<GameObject> Minions;
     set_bearColor set_BearColor;
     public static MinionController Instance { get; private set; }
@@ -43,6 +49,8 @@ public class MinionController : MonoBehaviour
     void Start()
     {
         Minions.Add(player);
+        changeCountText();
+        changeUIcolor();
     }
 
 
@@ -57,8 +65,10 @@ public class MinionController : MonoBehaviour
 
             GameObject minion = Instantiate(minionPrefab, minionsObj.transform.position, Quaternion.identity, minionsObj.transform); //create prefab
             Minions.Add(minion); // add minion to list
+            changeColorIndividual(minion);
             setPosition();
         }
+        changeCountText();
     }
     public void DecreaseMinion(int decreaseSize)
     {
@@ -75,6 +85,7 @@ public class MinionController : MonoBehaviour
             else
                 Debug.Log("GameOver");
         }
+        changeCountText();
 
     }
     public void MultipleMinion(int increaseSize)
@@ -157,10 +168,46 @@ public class MinionController : MonoBehaviour
                 }
                 break;
         }
-
-
-   
+        changeUIcolor();
 
     }
+    public void changeColorIndividual(GameObject newBear)
+    {
+        if (set_BearColor == set_bearColor.Black)
+        {
+            return;
+        }
+        switch (set_BearColor)
+        {
+            case set_bearColor.Black:
+                newBear.GetComponent<SkinnedMeshRenderer>().material = materials[0];
+                break;
+            case set_bearColor.Red:
+                newBear.GetComponent<SkinnedMeshRenderer>().material = materials[1];
+                break;
+            case set_bearColor.Yellow:
+                newBear.GetComponent<SkinnedMeshRenderer>().material = materials[2];
+                break;
+        }
 
+    }
+    void changeUIcolor()
+    {
+        switch (set_BearColor)
+        {
+            case set_bearColor.Black:
+                countImage.color = UIcolors[0];
+                break;
+            case set_bearColor.Red:
+                countImage.color = UIcolors[1];
+                break;
+            case set_bearColor.Yellow:
+                countImage.color = UIcolors[2];
+                break;
+        }
+    }
+    void changeCountText()
+    {
+        countText.text=Minions.Count.ToString(); 
+    }
 }
