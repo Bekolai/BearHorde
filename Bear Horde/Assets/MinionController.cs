@@ -3,10 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
-
-public class MinionController : MonoBehaviour
-{
-    public enum set_changeType
+ public enum set_changeType
     {
         Increase,
         Decrease,
@@ -19,6 +16,15 @@ public class MinionController : MonoBehaviour
         Red,
         Yellow
     }
+    public enum minionColor
+    {
+        Black,
+        Red,
+        Yellow
+    }
+public class MinionController : MonoBehaviour
+{
+   
 
 
 
