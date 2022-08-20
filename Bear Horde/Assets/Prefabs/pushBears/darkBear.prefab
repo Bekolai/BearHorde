@@ -142,6 +142,8 @@ GameObject:
   - component: {fileID: -5660218400655314791}
   - component: {fileID: 9112099693308269983}
   - component: {fileID: 463143542090223531}
+  - component: {fileID: 5147933360452758200}
+  - component: {fileID: 4307531078909776868}
   m_Layer: 0
   m_Name: darkBear
   m_TagString: Minion
@@ -349,6 +351,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9fb0aebb6ca1f64d9a2e10f8980df33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!195 &5147933360452758200
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 766973348317529178}
+  m_Enabled: 0
+  m_AgentTypeID: 0
+  m_Radius: 0.1
+  m_Speed: 10
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 240
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1.65
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &4307531078909776868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 766973348317529178}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cb8b4ff39404af42bffec89b5eafe27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: 5147933360452758200}
 --- !u!1 &852655345121822976
 GameObject:
   m_ObjectHideFlags: 0

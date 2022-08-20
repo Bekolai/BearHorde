@@ -34,6 +34,16 @@ public class BearCollisionHandler : MonoBehaviour
             movementController.StopMovement();
             MinionController.Instance.removeMinion(gameObject);
         }
+        if (other.CompareTag("Finish"))
+        {
+            GetComponent<Rigidbody>().isKinematic = true;
+            movementController.enabled=false;
+            MinionController.Instance.swarmBoss();
+        }
+        if (other.CompareTag("Boss"))
+        {
+            Debug.Log("Boss");
+        }
         if (other.CompareTag("Push"))
         {
             

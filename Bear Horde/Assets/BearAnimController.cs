@@ -30,6 +30,11 @@ public class BearAnimController : MonoBehaviour
         animator.ResetTrigger("Run");
         animator.SetTrigger("Death");
     }
+    public void Attack()
+    {
+        animator.ResetTrigger("Run");
+        animator.SetTrigger("Attack3");
+    }
     public void getHit()
     {
         animator.SetTrigger("GetHit");

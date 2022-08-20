@@ -2281,6 +2281,7 @@ GameObject:
   - component: {fileID: 1833338936237610113}
   - component: {fileID: 8755853506223073455}
   - component: {fileID: 7962199819670613420}
+  - component: {fileID: 7962199819670613414}
   m_Layer: 0
   m_Name: Bear
   m_TagString: Untagged
@@ -2362,7 +2363,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8578863060496166246}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bac8e92e5e846ba4f8d873a4304b8ee3, type: 3}
   m_Name: 
@@ -2517,10 +2518,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cb8b4ff39404af42bffec89b5eafe27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  materials:
-  - {fileID: 2100000, guid: b614f09dade340f4aa841aafe3df42b9, type: 2}
-  - {fileID: 2100000, guid: ca140fa728099f447b612dc153372e2b, type: 2}
-  - {fileID: 2100000, guid: 046a595a5f0a2924dbf7a764c9da8dd5, type: 2}
+  agent: {fileID: 7962199819670613414}
+--- !u!195 &7962199819670613414
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8578863060496166246}
+  m_Enabled: 0
+  m_AgentTypeID: 0
+  m_Radius: 0.1
+  m_Speed: 10
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 240
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2.15
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &8711202054420824535
 GameObject:
   m_ObjectHideFlags: 0

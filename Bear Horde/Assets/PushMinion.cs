@@ -19,7 +19,9 @@ public class PushMinion : MonoBehaviour
 
     // Start is called before the first frame update
     void createMinions()
-    {
+    {   
+        minionCount = Random.Range(randomMin, randomMax);
+        minionCountText.text = minionCount.ToString();
         for (int i = 0; i < minionCount; i++)
         {
             int row = i / 2;
@@ -44,8 +46,7 @@ public class PushMinion : MonoBehaviour
     
     void Start()
     {
-        minionCount = Random.Range(randomMin, randomMax);
-        minionCountText.text = minionCount.ToString();
+        
 
     }
     public void setColor(int colorIndex)
@@ -76,6 +77,7 @@ public class PushMinion : MonoBehaviour
             else
             {
                 minions[i].GetComponent<Minion>().MinionPicked();
+                minions[i].GetComponent<BearNavMesh>().enabled = true;
             }
         }
       

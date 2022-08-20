@@ -27,7 +27,8 @@ public class MinionController : MonoBehaviour
 
     [SerializeField] GameObject minionPrefab;
     [SerializeField] GameObject minionsObj;
-    [SerializeField] GameObject player;  
+    [SerializeField] GameObject player;
+    [SerializeField] GameObject boss;
     [SerializeField] TMP_Text countText;
     [SerializeField] Image    countImage;
     [SerializeField] Material[] materials;
@@ -52,6 +53,8 @@ public class MinionController : MonoBehaviour
         Minions.Add(player); // add player as minion zero
         changeCountText();
         changeUIcolor();
+
+        boss = GameObject.Find("Boss");
     }
 
 
@@ -59,7 +62,7 @@ public class MinionController : MonoBehaviour
     {
         for(int i = 0; i < increaseSize; i++)
         {
-            if(Minions.Count>=50)
+            if(Minions.Count>= maxHordeSize)
             {
                 break;
             }
@@ -239,5 +242,16 @@ public class MinionController : MonoBehaviour
     public set_bearColor currentColor()
     {
         return set_BearColor;
+    }
+    public void swarmBoss()
+    {
+        minionsObj.transform.parent = null;
+        foreach (GameObject minion in Minions)
+        {
+            BearNavMesh bearNav = minion.GetComponent<BearNavMesh>();
+            bearNav.gameObject.SetActive(true);
+        }
+        AImanager.Instance.StartSwarmTarget();
+       
     }
 }
