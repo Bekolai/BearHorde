@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class BearCollisionHandler : MonoBehaviour
 {
+    MovementController movementController;
+    void Awake()
+    {
+        movementController = GetComponent<MovementController>();
+    }
     private void OnTriggerEnter(Collider other)
     {
        if (other.CompareTag("ChangeSize"))
@@ -24,7 +29,52 @@ public class BearCollisionHandler : MonoBehaviour
             ColorChanger colorChanger = other.gameObject.GetComponent<ColorChanger>();
             MinionController.Instance.changeColor(colorChanger.set_BearColor);
         }
+        if (other.CompareTag("Collider"))
+        {
+            movementController.StopMovement();
+            MinionController.Instance.removeMinion(gameObject);
+        }
+        if (other.CompareTag("Push"))
+        {
+            
+            PushMinion pushMinion = other.gameObject.GetComponent<PushMinion>();
+            movementController.StopMovement();
+            transform.position = new Vector3(other.transform.position.x,transform.position.y,transform.position.z);
+            if(pushMinion.MinionColor==MinionController.Instance.currentColor())
+            {
+                movementController.StartVerticalMovement();
+                pushMinion.sameColorPush();
+                StartCoroutine(movementReset());
+            }
+            else
+            {
+                if(pushMinion.MinionCount()>=MinionController.Instance.Minions.Count)
+                {
+                 pushMinion.differentColorPush();
+                }
+                else
+                {
+                StartCoroutine(startVertical());
+                pushMinion.differentColorPush();
+                }
+            
+
+            }
+        }
 
     }
-    
+    IEnumerator movementReset()
+    {
+        yield return new WaitForSeconds(1f);
+        movementController.StartMovement();
+    }
+    IEnumerator startVertical()
+    {
+        yield return new WaitForSeconds(1f);
+        movementController.StartVerticalMovement();
+        yield return new WaitForSeconds(1f);
+        movementController.StartMovement();
+    }
+
+
 }

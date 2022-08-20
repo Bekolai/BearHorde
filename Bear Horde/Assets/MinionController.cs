@@ -16,12 +16,7 @@ using UnityEngine.UI;
         Red,
         Yellow
     }
-    public enum minionColor
-    {
-        Black,
-        Red,
-        Yellow
-    }
+
 public class MinionController : MonoBehaviour
 {
    
@@ -64,7 +59,7 @@ public class MinionController : MonoBehaviour
     {
         for(int i = 0; i < increaseSize; i++)
         {
-            if(Minions.Count>=19)
+            if(Minions.Count>=50)
             {
                 break;
             }
@@ -75,6 +70,19 @@ public class MinionController : MonoBehaviour
             setPosition();
         }
         changeCountText();
+    }
+    public bool AddIndividualMinion(GameObject minion)
+    {
+        if (Minions.Count >= 50)
+        {
+            return false;
+        }
+        Minions.Add(minion);
+        minion.transform.parent = minionsObj.transform;
+        setPosition();
+        changeCountText();
+        return true;
+
     }
     public void DecreaseMinion(int decreaseSize)
     {
@@ -89,7 +97,13 @@ public class MinionController : MonoBehaviour
 
             }
             else
-                Debug.Log("GameOver");
+            {
+            Debug.Log("GameOver");
+                
+                Minions[0].GetComponent<BearAnimController>().Death();
+                Minions.RemoveAt(0);
+            }
+                
         }
         changeCountText();
 
@@ -133,7 +147,7 @@ public class MinionController : MonoBehaviour
     }
     public void removeMinion(GameObject diedMinion)
     {
-        if (Minions.Count > 1)
+        if (Minions.Count > 1 && Minions.IndexOf(diedMinion)!=0)
         {
 
             Minions.Remove(diedMinion);
@@ -141,7 +155,9 @@ public class MinionController : MonoBehaviour
             setPosition();//set pos after removing minion
         }
         else
-            Debug.Log("GameOver");
+        Minions[0].GetComponent<BearAnimController>().Death();
+        Minions.RemoveAt(0);
+        Debug.Log("GameOver");
        
     }
     public void changeColor(set_bearColor color)
@@ -215,5 +231,9 @@ public class MinionController : MonoBehaviour
     void changeCountText()
     {
         countText.text=Minions.Count.ToString(); 
+    }
+    public set_bearColor currentColor()
+    {
+        return set_BearColor;
     }
 }

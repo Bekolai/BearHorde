@@ -13,6 +13,7 @@ public class PushBase : MonoBehaviour
         {
             colorRandom.Add(i);
         }
+        initiateChildObjects();
     }
     void initiateChildObjects()
     {
@@ -20,6 +21,7 @@ public class PushBase : MonoBehaviour
         {
             int randomNumber = colorRandom[Random.Range(0,colorRandom.Count)];
             colorRandom.Remove(randomNumber);
+            pushingObjects[i].GetComponent<PushMinion>().setColor(randomNumber);
 
 
 

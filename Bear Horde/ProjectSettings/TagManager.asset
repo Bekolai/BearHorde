@@ -9,6 +9,7 @@ TagManager:
   - ChangeSize
   - Minion
   - ColorChanger
+  - Push
   layers:
   - Default
   - TransparentFX

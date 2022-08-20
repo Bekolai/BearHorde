@@ -87,14 +87,23 @@ public class MovementController : MonoBehaviour
     }
     public void StopVerticalMovement()
     {
-        _xSpeed = 0f;
-
+         _playerSpeed = 0f;
     }
     public void StartVerticalMovement()
     {
-        _xSpeed = xSpeed;
+        _playerSpeed = playerSpeed;
     }
+    public void StopHoriztontalMovement()
+    {
+        _xSpeed = 0f;
+       
 
+    }
+    public void StartHorizontalMovement()
+    {
+        _xSpeed = xSpeed;
+        
+    }
 
 
 

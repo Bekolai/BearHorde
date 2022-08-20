@@ -1868,6 +1868,9 @@ GameObject:
   - component: {fileID: 3336944935213157946}
   - component: {fileID: 8294851838460028032}
   - component: {fileID: 2449651059198913722}
+  - component: {fileID: 7349845003653886682}
+  - component: {fileID: -3430054559900555936}
+  - component: {fileID: 5201825213976885446}
   m_Layer: 0
   m_Name: yellowBear
   m_TagString: Minion
@@ -2035,6 +2038,46 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.83984464, y: 0.33303106, z: -0.0000063180923}
     m_Extent: {x: 1.5154362, y: 1.001114, z: 1.0839572}
   m_DirtyAABB: 0
+--- !u!54 &7349845003653886682
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8351021457092300538}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &-3430054559900555936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8351021457092300538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4247349195b7b1949a6040cbb4e7f809, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5201825213976885446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8351021457092300538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9fb0aebb6ca1f64d9a2e10f8980df33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8372264090602137433
 GameObject:
   m_ObjectHideFlags: 0

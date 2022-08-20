@@ -12,7 +12,7 @@ public class Minion : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bearAnimController.StartRunning();
+       // bearAnimController.StartRunning();
     }
 
     // Update is called once per frame
@@ -25,5 +25,10 @@ public class Minion : MonoBehaviour
         transform.parent = null;
         bearAnimController.Death();
         Destroy(gameObject, 2f);
+    }
+    public void MinionPicked()
+    {
+        bearAnimController.StartRunning();
+        transform.rotation=Quaternion.Euler(0,0,0);
     }
 }
