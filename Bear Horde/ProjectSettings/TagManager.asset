@@ -10,6 +10,7 @@ TagManager:
   - Minion
   - ColorChanger
   - Push
+  - Collider
   layers:
   - Default
   - TransparentFX

@@ -36,8 +36,7 @@ public class MovementController : MonoBehaviour
     {
 
         Movement();
-        //  transform.Translate(Time.deltaTime * Vector3.right*1); //rotating stick force
-
+       
 
     }
     private void Update()

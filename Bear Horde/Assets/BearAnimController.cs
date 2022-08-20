@@ -17,7 +17,7 @@ public class BearAnimController : MonoBehaviour
     }
     public void StartRunning()
     {
-        animator.SetBool("Idle", false);
+        animator.SetBool("Idle", false); 
         animator.SetTrigger("Run");
     }
     public void Buff()

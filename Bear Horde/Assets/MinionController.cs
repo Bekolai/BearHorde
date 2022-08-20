@@ -19,18 +19,18 @@ using UnityEngine.UI;
 
 public class MinionController : MonoBehaviour
 {
-   
 
 
+
+    [SerializeField] int maxHordeSize=50;
+    [SerializeField] Color[] UIcolors;
 
     [SerializeField] GameObject minionPrefab;
     [SerializeField] GameObject minionsObj;
-    [SerializeField] GameObject player;
+    [SerializeField] GameObject player;  
     [SerializeField] TMP_Text countText;
     [SerializeField] Image    countImage;
     [SerializeField] Material[] materials;
-    [SerializeField] Color[] UIcolors;
-
 
     public List<GameObject> Minions;
     set_bearColor set_BearColor;
@@ -49,7 +49,7 @@ public class MinionController : MonoBehaviour
     }
     void Start()
     {
-        Minions.Add(player);
+        Minions.Add(player); // add player as minion zero
         changeCountText();
         changeUIcolor();
     }
@@ -66,19 +66,19 @@ public class MinionController : MonoBehaviour
 
             GameObject minion = Instantiate(minionPrefab, minionsObj.transform.position, Quaternion.identity, minionsObj.transform); //create prefab
             Minions.Add(minion); // add minion to list
-            changeColorIndividual(minion);
-            setPosition();
+            changeColorIndividual(minion); // change prefabs color according to players color
+            setPosition(); //update hordes position
         }
         changeCountText();
     }
     public bool AddIndividualMinion(GameObject minion)
     {
-        if (Minions.Count >= 50)
+        if (Minions.Count >= maxHordeSize) //if count equals to limit return
         {
             return false;
         }
-        Minions.Add(minion);
-        minion.transform.parent = minionsObj.transform;
+        Minions.Add(minion); //add minion to list
+        minion.transform.parent = minionsObj.transform; // make minion child of spawner
         setPosition();
         changeCountText();
         return true;
@@ -88,7 +88,7 @@ public class MinionController : MonoBehaviour
     {
        for(int i=0;i<decreaseSize;i++)
         {
-            if (Minions.Count > 1)
+            if (Minions.Count > 1) // check if there are minions except player
             {
                 GameObject minion = Minions[Minions.Count-1];
                 Minions.RemoveAt(Minions.Count-1);
@@ -96,7 +96,7 @@ public class MinionController : MonoBehaviour
                 setPosition(); //set pos after removing minion
 
             }
-            else
+            else // if the player last bear 
             {
             Debug.Log("GameOver");
                 
@@ -111,8 +111,8 @@ public class MinionController : MonoBehaviour
     public void MultipleMinion(int increaseSize)
     {
         
-        int totalIncrease=Minions.Count*increaseSize;
-        totalIncrease -= Minions.Count;
+        int totalIncrease=Minions.Count*increaseSize; 
+        totalIncrease -= Minions.Count; 
         IncreaseMinion(totalIncrease);
     }
     public void DivisonMinion(int decreaseSize)
@@ -143,26 +143,30 @@ public class MinionController : MonoBehaviour
             }
         
         }
-    
+        
+
     }
     public void removeMinion(GameObject diedMinion)
     {
-        if (Minions.Count > 1 && Minions.IndexOf(diedMinion)!=0)
+        if (Minions.IndexOf(diedMinion)!=0) //check if the removed object is not player
         {
 
             Minions.Remove(diedMinion);
             diedMinion.GetComponent<Minion>().MinionDie();
-            setPosition();//set pos after removing minion
+            Invoke("setPosition",1f);//set pos after removing minion wait for 1 sec to set position to not stack on each other
         }
         else
+        {
         Minions[0].GetComponent<BearAnimController>().Death();
         Minions.RemoveAt(0);
         Debug.Log("GameOver");
-       
+        }
+        changeCountText();
+
     }
     public void changeColor(set_bearColor color)
     {
-       if(color==set_BearColor)
+       if(color==set_BearColor) //check if the changecolor objects color is same with player
         {
             return;
         }

@@ -390,7 +390,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2126282183666685887}
-  - component: {fileID: 2126282183666685886}
+  - component: {fileID: 1933749560364883421}
+  - component: {fileID: 3267639092307024134}
   m_Layer: 0
   m_Name: DropTrap
   m_TagString: Untagged
@@ -416,26 +417,34 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &2126282183666685886
-Animator:
-  serializedVersion: 4
+--- !u!114 &1933749560364883421
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2126282183666685881}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3b7b287632e63e444afe00f5df94d0e6, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 785abf781b4abe946ac95409b491f04e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!111 &3267639092307024134
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2126282183666685881}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: d2bc240221831194496a385ac49d7f3b, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: d2bc240221831194496a385ac49d7f3b, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &2126282184020033578
 GameObject:
   m_ObjectHideFlags: 0

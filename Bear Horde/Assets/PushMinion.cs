@@ -6,13 +6,16 @@ using DG.Tweening;
 
 public class PushMinion : MonoBehaviour
 {
-    [SerializeField] TMP_Text minionCountText;
+    
     int minionCount;
+    [SerializeField] int randomMin=5,randomMax=12;
+    [SerializeField] List<GameObject> minions;
     public set_bearColor MinionColor;
     [SerializeField] GameObject[] minionsPrefab;
-    [SerializeField] List<GameObject> minions;
+
+
+    [SerializeField] TMP_Text minionCountText;
     GameObject selectedMinionPref;
-    [SerializeField] int randomMin=5,randomMax=12;
 
     // Start is called before the first frame update
     void createMinions()

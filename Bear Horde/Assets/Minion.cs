@@ -31,4 +31,11 @@ public class Minion : MonoBehaviour
         bearAnimController.StartRunning();
         transform.rotation=Quaternion.Euler(0,0,0);
     }
+     void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Collider"))
+        {
+            MinionController.Instance.removeMinion(gameObject);
+        }
+    }
 }
