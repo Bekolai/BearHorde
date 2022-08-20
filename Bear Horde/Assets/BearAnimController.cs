@@ -22,7 +22,7 @@ public class BearAnimController : MonoBehaviour
     }
     public void Buff()
     {
-        animator.ResetTrigger("Run");
+        animator.ResetTrigger("Attack3");
         animator.SetTrigger("Buff");
     }
     public void Death()

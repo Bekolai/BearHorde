@@ -248,7 +248,7 @@ public class MinionController : MonoBehaviour
         minionsObj.transform.parent = null;
         foreach (GameObject minion in Minions)
         {
-            BearNavMesh bearNav = minion.GetComponent<BearNavMesh>();
+            Bear bearNav = minion.GetComponent<Bear>();
             bearNav.gameObject.SetActive(true);
         }
         AImanager.Instance.StartSwarmTarget();

@@ -19,7 +19,7 @@ public class AImanager : MonoBehaviour
     }
     public Transform target;
     public float RadiusAroundTarget = 0.5f;
-    public List<BearNavMesh> Units = new List<BearNavMesh>();
+    public List<Bear> Units = new List<Bear>();
     void Start()
     {
         target = GameObject.Find("Boss").transform;

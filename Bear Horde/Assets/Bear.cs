@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 [DefaultExecutionOrder(1)]
-public class BearNavMesh : MonoBehaviour
+public class Bear : MonoBehaviour
 {
 
-   
+    [SerializeField] int damage=1;
     [SerializeField] NavMeshAgent agent;
     bool reached;
     // Start is called before the first frame update
@@ -48,4 +48,18 @@ public class BearNavMesh : MonoBehaviour
     {
         transform.LookAt(target);
     }
+    public void DealDamage()
+    {
+        if(Boss.Instance.isDied())
+        {
+            GetComponent<BearAnimController>().Buff();
+        
+        }
+        else
+        {
+            Boss.Instance.bossGetHit(damage);
+        }
+        
+    }
+
 }

@@ -77,7 +77,7 @@ public class PushMinion : MonoBehaviour
             else
             {
                 minions[i].GetComponent<Minion>().MinionPicked();
-                minions[i].GetComponent<BearNavMesh>().enabled = true;
+                minions[i].GetComponent<Bear>().enabled = true;
             }
         }
       
