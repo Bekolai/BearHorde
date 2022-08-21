@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ae557057eadf3147b409f01bb8f4bab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeType: 2
+  changeType: 0
   number: 0
   text: {fileID: 4469013972367562240}
   materials:

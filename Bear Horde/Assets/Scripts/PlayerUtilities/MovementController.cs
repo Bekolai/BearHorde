@@ -25,9 +25,9 @@ public class MovementController : MonoBehaviour
   
     private void Start()
     {
-
-        StartMovement();
-       // StopMovement();
+        GetComponent<BearAnimController>().Sleep();
+        // StartMovement();
+        StopMovement();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -81,6 +81,7 @@ public class MovementController : MonoBehaviour
     }
     public void StartMovement()
     {
+        GetComponent<BearAnimController>().StartRunning();
         _xSpeed = xSpeed;
         _playerSpeed = playerSpeed;
     }

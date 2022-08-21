@@ -122,7 +122,7 @@ public class MinionController : MonoBehaviour
     public void DivisonMinion(int decreaseSize)
     {
         int totalDecrease = Minions.Count / decreaseSize;
-        totalDecrease =  Minions.Count-totalDecrease;
+        totalDecrease =  Minions.Count-totalDecrease; 
         DecreaseMinion(totalDecrease);
     }
     void setPosition()
@@ -133,8 +133,8 @@ public class MinionController : MonoBehaviour
            for(int i=1; i < minionsCount; i++)
             {
                 Vector3 offset=Vector3.zero;
-                int verticalPos = i % 3;
-                int row=(i-1)/3;
+                int verticalPos = i % 3; // 3 bear on same axis
+                int row=(i-1)/3; //row calculation after every 3 bear
                 switch(verticalPos)
                 {
                     case 1:offset.x = 0f;break;
@@ -173,12 +173,13 @@ public class MinionController : MonoBehaviour
         player.GetComponent<BearAnimController>().Death();
         Minions.Remove(player);
         AudioManager.Instance.PlayFailSFX();
-        Debug.Log("GameOver");
+        UIManager.Instance.callGameOverUI();
     }
 
     public void changeColor(set_bearColor color)
     {
-       if(color==set_BearColor) //check if the changecolor objects color is same with player
+        AudioManager.Instance.PlayPushCollectSFX();
+        if (color==set_BearColor) //check if the changecolor objects color is same with player
         {
             return;
         }
@@ -215,7 +216,7 @@ public class MinionController : MonoBehaviour
         {
             return;
         }
-        switch (set_BearColor)
+        switch (set_BearColor) //change color of the minion
         {
             case set_bearColor.Black:
                 newBear.GetComponent<SkinnedMeshRenderer>().material = materials[0];
@@ -231,7 +232,7 @@ public class MinionController : MonoBehaviour
     }
     void changeUIcolor()
     {
-        switch (set_BearColor)
+        switch (set_BearColor) //change ui color according to players color
         {
             case set_bearColor.Black:
                 countImage.color = UIcolors[0];
@@ -254,7 +255,7 @@ public class MinionController : MonoBehaviour
     }
     public void swarmBoss()
     {
-        minionsObj.transform.parent = null;
+        minionsObj.transform.parent = null; 
         foreach (GameObject minion in Minions)
         {
             Bear bearNav = minion.GetComponent<Bear>();

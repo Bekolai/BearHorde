@@ -9,14 +9,8 @@ public class Minion : MonoBehaviour
     void Awake()
     {
         bearAnimController = GetComponent<BearAnimController>();
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-       // bearAnimController.StartRunning();
-    }
 
-    // Update is called once per frame
+    }
     void Update()
     {
         

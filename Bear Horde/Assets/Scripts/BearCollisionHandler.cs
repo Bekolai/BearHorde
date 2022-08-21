@@ -41,16 +41,16 @@ public class BearCollisionHandler : MonoBehaviour
             GetComponent<Rigidbody>().isKinematic = true;
             movementController.enabled=false;
             MinionController.Instance.swarmBoss();
-            transform.GetChild(2).gameObject.SetActive(false);
+            transform.GetChild(1).gameObject.SetActive(false);
         }
 
         if (other.CompareTag("Push"))
         {
             
-            PushMinion pushMinion = other.gameObject.GetComponent<PushMinion>();
-            movementController.StopMovement();
-            transform.position = new Vector3(other.transform.position.x,transform.position.y,transform.position.z);
-            if(pushMinion.MinionColor==MinionController.Instance.currentColor())
+            PushMinion pushMinion = other.gameObject.GetComponent<PushMinion>(); //get pushminion script
+            movementController.StopMovement(); //stop players movement 
+            transform.position = new Vector3(other.transform.position.x,transform.position.y,transform.position.z); //move player to push minions x axis
+            if(pushMinion.MinionColor==MinionController.Instance.currentColor()) //check if player is gonna add new bears to horde
             {
                 movementController.StartVerticalMovement();
                 pushMinion.sameColorPush();
@@ -62,7 +62,7 @@ public class BearCollisionHandler : MonoBehaviour
             {
                 pushMinion.differentColorPush();
                 AudioManager.Instance.PlayColliderSFX();
-                if (pushMinion.MinionCount()<MinionController.Instance.Minions.Count)
+                if (pushMinion.MinionCount()<MinionController.Instance.Minions.Count) //check if player won and start movement
                 { 
                  StartCoroutine(startVertical());
                 }

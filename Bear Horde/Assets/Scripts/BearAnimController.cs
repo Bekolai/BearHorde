@@ -39,4 +39,8 @@ public class BearAnimController : MonoBehaviour
     {
         animator.SetTrigger("GetHit");
     }
+    public void Sleep()
+    {
+        animator.Play("Sleep");
+    }
 }

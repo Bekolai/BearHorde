@@ -63,6 +63,7 @@ public class Boss : MonoBehaviour
         died = true;
         hpSlider.gameObject.SetActive(false);
         animator.SetBool("Death", true);
+        UIManager.Instance.callWinUI();
     }
     public bool isDied()
     {
@@ -70,29 +71,29 @@ public class Boss : MonoBehaviour
     }
     public void startBossAttack()
     {
-        if (minionController.Minions.Count > 1)
+        if (minionController.Minions.Count > 1) //if not player attack random minion
             {
                 attackNumber = Random.Range(1, minionController.Minions.Count - 1);
             }
             else
-                attackNumber = 0;
+                attackNumber = 0; //attack player
         StartCoroutine(coStartBossAttack());
        
         
     }
-    public void bossKillMinion()
+    public void bossKillMinion() //animation event
     {
-        minionController.bossKillMinion(minionController.Minions[attackNumber]);
+        minionController.bossKillMinion(minionController.Minions[attackNumber]); //kill selected minion.
     }
     IEnumerator coStartBossAttack()
     {
 
 
-        transform.DOLookAt(minionController.Minions[attackNumber].transform.position,0.5f);
+        transform.DOLookAt(minionController.Minions[attackNumber].transform.position,0.5f); //rotate towards selected bear
         yield return new WaitForSeconds(0.5f);
         if (minionController.Minions.Count > 0)
         {
-            animator.SetTrigger("Attack2");
+            animator.SetTrigger("Attack2"); 
         }
     }
 }

@@ -40,14 +40,14 @@ public class AImanager : MonoBehaviour
             Units[i].MoveTo(new Vector3(
                 target.position.x + RadiusAroundTarget * Mathf.Cos(2 * Mathf.PI * i / Units.Count),
                 target.position.y,
-                target.position.z + RadiusAroundTarget * Mathf.Sin(2 * Mathf.PI * i / Units.Count)));
+                target.position.z + RadiusAroundTarget * Mathf.Sin(2 * Mathf.PI * i / Units.Count))); // to swarm boss/circle
             Units[i].LookAt(target);
         }
     }
     public void StartSwarmTarget()
     {
          StartCoroutine(coSwarmTarget());
-       // SwarmTarget();
+
 
     }
     IEnumerator coSwarmTarget()
@@ -57,7 +57,7 @@ public class AImanager : MonoBehaviour
         SwarmTarget();
         yield return new WaitForSeconds(2f);
         SwarmTarget();
-        Boss.Instance.startBossAttack();
+        Boss.Instance.startBossAttack(); //starting boss
 
     }
 

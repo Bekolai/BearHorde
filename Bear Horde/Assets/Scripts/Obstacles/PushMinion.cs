@@ -20,35 +20,28 @@ public class PushMinion : MonoBehaviour
     // Start is called before the first frame update
     void createMinions()
     {   
-        minionCount = Random.Range(randomMin, randomMax);
+        minionCount = Random.Range(randomMin, randomMax); //randomise minion count
         minionCountText.text = minionCount.ToString();
         for (int i = 0; i < minionCount; i++)
         {
-            int row = i / 2;
+            Vector3 spawnPos = Vector3.zero;
+            int row = i / 2; // 2 bear in a same row
             if (i % 2 == 0)
             {
-                Vector3 spawnPos = new Vector3(-0.5f, 0, (1.75f * row));
-                GameObject minion = Instantiate(selectedMinionPref,transform.position+ spawnPos, Quaternion.Euler(0f, 180f, 0), transform);
-                minions.Add(minion);
-                minion.GetComponent<Animator>().SetBool("Idle", true);
+                 spawnPos = new Vector3(-0.5f, 0, (1.75f * row));
+               
             }
             else
             {
-                Vector3 spawnPos = new Vector3(0.5f, 0, (1.75f * row));
-                GameObject minion = Instantiate(selectedMinionPref, transform.position + spawnPos, Quaternion.Euler(0f,180f,0), transform);
-                minions.Add(minion);
-                minion.GetComponent<Animator>().SetBool("Idle", true);
-
+                 spawnPos = new Vector3(0.5f, 0, (1.75f * row));
+ 
             }
-            
+             GameObject minion = Instantiate(selectedMinionPref,transform.position+ spawnPos, Quaternion.Euler(0f, 180f, 0), transform);
+             minions.Add(minion);
+             minion.GetComponent<Animator>().SetBool("Idle", true);
         }
     }
     
-    void Start()
-    {
-        
-
-    }
     public void setColor(int colorIndex)
     {
         
@@ -101,8 +94,8 @@ public class PushMinion : MonoBehaviour
     IEnumerator RemoveMinions(int count)
     {
         yield return new WaitForSeconds(0.5f);
-         MinionController.Instance.DecreaseMinion(minionCount);
-        for (int i = 0; i < count; i++)
+         MinionController.Instance.DecreaseMinion(minionCount); //remove pushminions total count of bears from players horde 
+        for (int i = 0; i < count; i++) //remove this objects minions according to players horde count
         {
             if(minions.Count>0)
             {
@@ -111,7 +104,7 @@ public class PushMinion : MonoBehaviour
             }
             
         }
-        foreach (GameObject minion in minions)
+        foreach (GameObject minion in minions) //if any minion alive play buff anim
         {
             minion.GetComponent<BearAnimController>().Buff();
         }
