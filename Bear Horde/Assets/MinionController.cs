@@ -254,4 +254,24 @@ public class MinionController : MonoBehaviour
         AImanager.Instance.StartSwarmTarget();
        
     }
+    public void bossKillMinion(GameObject diedMinion)
+    {
+        if (Minions.IndexOf(diedMinion) != 0) //check if the removed object is not player
+        {
+
+            Minions.Remove(diedMinion);
+            diedMinion.GetComponent<Minion>().MinionDie();
+        }
+        else
+        {   
+            Minions[0].GetComponent<BearAnimController>().Death();
+            Minions.RemoveAt(0);
+           
+        }
+        if(Minions.Count<=0)
+        {
+            Debug.Log("GameOver");
+        }
+
+    }
 }

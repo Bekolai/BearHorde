@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Minion : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class Minion : MonoBehaviour
     {
         transform.parent = null;
         bearAnimController.Death();
+        GetComponent<NavMeshAgent>().enabled = false;
+        GetComponent<Bear>().enabled = false;
         Destroy(gameObject, 2f);
     }
     public void MinionPicked()

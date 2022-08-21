@@ -57,6 +57,7 @@ public class AImanager : MonoBehaviour
         SwarmTarget();
         yield return new WaitForSeconds(2f);
         SwarmTarget();
+        Boss.Instance.startBossAttack();
 
     }
 

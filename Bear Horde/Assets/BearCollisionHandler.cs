@@ -40,10 +40,7 @@ public class BearCollisionHandler : MonoBehaviour
             movementController.enabled=false;
             MinionController.Instance.swarmBoss();
         }
-        if (other.CompareTag("Boss"))
-        {
-            Debug.Log("Boss");
-        }
+
         if (other.CompareTag("Push"))
         {
             
@@ -55,6 +52,7 @@ public class BearCollisionHandler : MonoBehaviour
                 movementController.StartVerticalMovement();
                 pushMinion.sameColorPush();
                 StartCoroutine(movementReset());
+                transform.GetChild(2).gameObject.SetActive(false);
             }
             else
             {
