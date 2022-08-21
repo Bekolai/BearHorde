@@ -171,6 +171,7 @@ public class MinionController : MonoBehaviour
     private void PlayerDied()
     {
         player.GetComponent<BearAnimController>().Death();
+        player.GetComponent<MovementController>().StopMovement();
         Minions.Remove(player);
         AudioManager.Instance.PlayFailSFX();
         UIManager.Instance.callGameOverUI();
